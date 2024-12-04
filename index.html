@@ -8,8 +8,21 @@
 <body>
     <script>
             //SECTION1
-        //1. create a FUNCTION named getComputerChoice. 
-        //2. write code so getComputerChoice will RETURN
+        //1. create a FUNCTION named getComputerChoice.
+        let choice = Math.floor(Math.random() * 3)
+        function getComputerChoice() {
+            if (choice == 0) {
+                return "rock"
+            }
+            else if (choice == 1) {
+                return "paper"
+            }
+            else {
+                return "scissors"
+            }
+        } 
+        console.log(getComputerChoice())
+        //2. write code so getComputerChoice will RETURN 'rock', 'paper', or 'scissors'
         //3. test fuction
 
             //SECTION2
