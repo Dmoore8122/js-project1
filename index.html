@@ -35,9 +35,8 @@
         //3. test function
 
         function getHumanChoice() {
-            return window.prompt('Rock, Paper, or Scissors?')
+            return window.prompt('Rock, Paper, or Scissors?');
         }
-        console.log(getHumanChoice())
 
             //SECTION3
         //1. create two variables humanScore and computerScore in the global scope
@@ -53,10 +52,27 @@
         //4. write code for playRound function to console.log a string value represting the round winner
         //5. Increment the humanScore and computerScore variable based on round winner
 
+        function playRound(humanChoice, computerChoice) {
+             const humanSelection = getHumanChoice().toLowerCase();
+             const computerSelection = getComputerChoice();
+
+            if (humanSelection == "rock" && computerSelection == "paper" || humanSelection == "paper" && computerSelection == "scissors" || humanSelection == "scissors" && computerSelection == "rock"){
+                computerScore++; 
+                console.log("Computer Wins!!" + humanScore + "-" + computerScore + ".");
+            } else if (humanSelection == "paper" && computerSelection == "rock" || humanSelection == "scissors" && computerSelection == "paper" || humanSelection == "rock" && computerSelection == "scissors") {
+                humanScore++;
+                console.log("You Win!!" + humanScore + "-" + computerScore + ".");
+            } else {
+                console.log("Its a Tie!!")
+            }
+        }
+          
+        console.log(playRound())
             //SECTION5
         //1. create function playGame
         //2. move playRound function and score variables so that theyre declared inside of the new playGame function
         //3. play 5 rounds by calling playRound 5 times
+
     </script>
 </body>
 </html>
