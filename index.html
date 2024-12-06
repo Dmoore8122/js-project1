@@ -12,9 +12,10 @@
         //2. write code so getComputerChoice will RETURN 'rock', 'paper', or 'scissors'
         //3. test fuction
 
-        let choice = Math.floor(Math.random() * 3)
 
         function getComputerChoice() {
+            const choice = Math.floor(Math.random() * 3)
+            
             if (choice == 0) {
                 return "rock"
             }
@@ -26,8 +27,6 @@
             }
         } 
 
-        console.log(getComputerChoice())
-
 
             //SECTION2
         //1. create a function named getHumanChoice
@@ -35,10 +34,11 @@
         //3. test function
 
         function getHumanChoice() {
-            return window.prompt('Rock, Paper, or Scissors?');
+            const playerSayWah = window.prompt('Rock, Paper, or Scissors?');
+            return playerSayWah
         }
 
-        console.log(getHumanChoice)
+        
 
             //SECTION3
         //1. create two variables humanScore and computerScore in the global scope
@@ -68,14 +68,35 @@
                 const humanSelection = getHumanChoice().toLowerCase();
                 const computerSelection = getComputerChoice();
 
-                if (humanSelection == "rock" && computerSelection == "paper" || humanSelection == "paper" && computerSelection == "scissors" || humanSelection == "scissors" && computerSelection == "rock"){
-                computerScore++; 
-                console.log("Computer Wins!!" + humanScore + "-" + computerScore + ".");
-                } else if (humanSelection == "paper" && computerSelection == "rock" || humanSelection == "scissors" && computerSelection == "paper" || humanSelection == "rock" && computerSelection == "scissors") {
+                console.log(humanSelection);
+                console.log(computerSelection);
+
+                if (humanSelection == "rock" && computerSelection == "paper" ||
+                 humanSelection == "paper" && computerSelection == "scissors" ||
+                  humanSelection == "scissors" && computerSelection == "rock") {
+
+                    computerScore++;
+                    console.log("Computer Wins!!" + humanScore + "-" + computerScore + ".");
+
+                } else if (humanSelection == "paper" && computerSelection == "rock" |
+                 humanSelection == "scissors" && computerSelection == "paper" ||
+                  humanSelection == "rock" && computerSelection == "scissors") {
+
                 humanScore++;
                 console.log("You Win!!" + humanScore + "-" + computerScore + ".");
+
                 } else {
                 console.log("Its a Tie!!")
+                }
+            }
+
+            function gameWinner() {
+                if (computerScore > humanScore) {
+                    console.log("COMPUTER WINS THE GAME!")
+                } else if (humanScore > computerScore) {
+                    console.log("YOU WON THE GAME!")
+                } else{
+                    console.log("ITS A TIE! PLAY AGAIN!")
                 }
             }
 
@@ -85,6 +106,7 @@
             playRound()
             playRound()
             playRound()
+            gameWinner()
         }
 
         playGame()
