@@ -3,7 +3,10 @@ const rockB = document.querySelector('.rock-button');
 const paperB = document.querySelector('.paper-button');
 const scissorsB = document.querySelector('.scissors-button');
 const resultsDiv = document.querySelector('.results');
-const decisionDiv = document.querySelector('.decision')
+const decisionDiv = document.querySelector('.decision');
+const gameWinnerdiv = document.querySelector('.game-winner');
+const pRScore = document.querySelector('.player-score');
+const cRScore = document.querySelector('.comp-score');
 
 function getComputerChoice() {
     const choice = Math.floor(Math.random() * 3)
@@ -20,27 +23,43 @@ function getComputerChoice() {
     }
 } 
 
+function scoreCounter (humanScore, computerScore) {
+    pRScore.innerText = 'PLAYER: ' + humanScore;
+    cRScore.innerText = 'Comp: ' + computerScore; 
+}
+
 
 
 
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
+    
+    
 
     rockB.addEventListener('click', () => {
         const computerSelection = getComputerChoice();
         const humanSelection = "rock";
         playRound(humanSelection, computerSelection);
+        scoreCounter (humanScore, computerScore);
+        gameWinner(humanScore, computerScore);
+
     });
     paperB.addEventListener('click', () => {
         const computerSelection = getComputerChoice();
         const humanSelection = 'paper';
-        playRound(humanSelection, computerSelection)
+        playRound(humanSelection, computerSelection);
+        scoreCounter (humanScore, computerScore);
+        gameWinner(humanScore, computerScore);
+        
     });
     scissorsB.addEventListener('click', () => {
         const computerSelection = getComputerChoice();
         const humanSelection = 'scissors';
         playRound(humanSelection, computerSelection);
+        scoreCounter (humanScore, computerScore);
+        gameWinner(humanScore, computerScore);
+       
     });
 
 
@@ -58,7 +77,7 @@ function playGame() {
 
             computerScore++;
             const p = document.createElement('p');
-            p.innerText = "Computer Wins!!" + humanScore + "-" + computerScore + ".";
+            p.innerText = "Computer Wins!!";
             resultsDiv.appendChild(p);
 
         } else if (humanSelection === "paper" && computerSelection === "rock" ||
@@ -67,7 +86,7 @@ function playGame() {
 
         humanScore++;
         const p = document.createElement('p');
-        p.innerText = "You Win!!" + humanScore + "-" + computerScore + ".";
+        p.innerText = "You Win!!" ;
         resultsDiv.appendChild(p);
 
         } else {
@@ -78,17 +97,27 @@ function playGame() {
     }
 
     function gameWinner() {
-        if (computerScore > humanScore) {
-            console.log("COMPUTER WINS THE GAME!")
-        } else if (humanScore > computerScore) {
-            console.log("YOU WON THE GAME!")
-        } else{
-            console.log("ITS A TIE! PLAY AGAIN!")
+        if (computerScore === 5) {
+            const h3 = document.createElement('h3');
+            h3.innerText = "COMPUTER WINS THE GAME!";
+            gameWinnerdiv.appendChild(h3);
+
+        }
+        
+        if (humanScore === 5) {
+            const h3 = document.createElement('h3');
+            h3.innerText = "YOU WON THE GAME!";
+            gameWinnerdiv.appendChild(h3);
+
+        }
+
+        if (humanScore > 5 || computerScore > 5) {
+            location.reload();
         }
     }
 
    
-   /* playRound()
+    /*playRound()
     playRound()
     playRound()
     playRound()
@@ -102,3 +131,4 @@ function playGame() {
 }
 
 playGame()
+
